@@ -1,0 +1,27 @@
+---
+  version: 1
+  schedule:
+    type: "simple"
+    interval: "10s"
+    count: 5
+  max-failures: 10
+  workflow:
+    collect:
+      metrics:
+        /intel/apache/CPULoad: {}
+        /intel/apache/ConnsTotal: {}
+        /intel/apache/Total_Accesses: {}
+        /intel/apache/BytesPerSec: {}
+        /intel/apache/ReqPerSec: {}
+        /intel/apache/Total_kBytes: {}
+      publish:
+        - plugin_name: "influxdb"
+          config:
+            host: "172.17.0.4"
+            port: 8086
+            database: "unified"
+            user: "admin"
+            password: "AdmiN123"
+            scheme: http
+            skip-verify: false
+            isMultiFields: true

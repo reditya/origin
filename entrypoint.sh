@@ -53,7 +53,8 @@ rm -f /run/apache2/httpd.pid
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
-  set -- httpd "$@"
+  #set -- httpd "$@"
+  set -- supervisord "$@"
 fi
 
 exec "$@"
